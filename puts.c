@@ -1,7 +1,7 @@
 #include"main.h"
 
 /**
- * puts - print string
+ * puts_string - print string
  * @c: string to print
  * Return: num of bytes
 */
@@ -10,7 +10,7 @@ int puts_string(char *c)
 {
 	int counter = 0;
 
-	if(c)
+	if (c)
 	{
 		for (counter = 0; c[counter] != '\0'; counter++)
 		{
