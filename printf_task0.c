@@ -31,16 +31,15 @@ int _printf(const char *format, ...)
 	}
 		else if (format[i + 1] == 's')
 		{
-			char *string = va_arg(args, char *);
-
-			puts_string(string);
+			string_counter = puts_string(va_arg(args, char *));
 			i++;
-			counter += strlen(string);
+			counter += (string_counter - 1);
 		}
 		else if (format[i + 1] == '%')
 		{
 			_putchar('%');
 		}
+		counter += 1;
 	}
 	va_end(args);
 	return (counter);
