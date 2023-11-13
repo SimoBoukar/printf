@@ -32,6 +32,7 @@ int _printf(const char *format, ...)
 		else if (format[i + 1] == 's')
 		{
 			char *string = va_arg(args, char *);
+
 			puts_string(string);
 			i++;
 			counter += strlen(string);
