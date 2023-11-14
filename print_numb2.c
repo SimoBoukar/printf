@@ -15,12 +15,12 @@ char *convert(long int num, int base, int flags, spec_para *params)
 	static char tab2[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long x = num;
+	unsigned long a = num;
 	(void)params;
 
 	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
-		x = -num;
+		a = -num;
 		sign = '-';
 	}
 
@@ -28,11 +28,10 @@ char *convert(long int num, int base, int flags, spec_para *params)
 	ptr = &tab2[49];
 	*ptr = '\0';
 
-	while (x != 0)
-	{
-		*--ptr = tab[x % base];
-		x /= base;
-	}
+	do	{
+		*--ptr = tab[a % base];
+		a /= base;
+	} while (a != 0)
 
 	if (sign)
 		*--ptr = sign;
@@ -71,15 +70,15 @@ int print_unsigned(va_list pointer, spec_para *params)
  */
 int print_address(va_list pointer, spec_para *params)
 {
-	unsigned long int x = va_arg(pointer, unsigned long int);
-	char *s;
+	unsigned long int i = va_arg(pointer, unsigned long int);
+	char *str_add;
 
-	if (!x)
+	if (!i)
 		return (_puts("(nil)"));
 
-	s = convert(x, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
-	*--s = 'x';
-	*--s = '0';
+	str_add = convert(i, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
+	*--str_add = 'x';
+	*--str_add = '0';
 
-	return (print_num(s, params));
+	return (print_num(str_add, params));
 }

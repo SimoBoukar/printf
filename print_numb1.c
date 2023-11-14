@@ -19,11 +19,11 @@ int _isdigit(int c)
  */
 int _strlen(char *s)
 {
-	int y = 0;
+	int len_s = 0;
 
 	while (*s++)
-		y++;
-	return (y);
+		len_s++;
+	return (len_s);
 }
 
 /**

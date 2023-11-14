@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	int count_bytes = 0;
 	va_list pointer;
 	char *i, *start;
-	spec_para para = PARAMS_INIT;
+	spec_para params = PARAMS_INIT;
 
 	va_start(pointer, format);
 
@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (i = (char *)format; *i; i++)
 		{
-		init_params(&para, pointer);
+		init_params(&params, pointer);
 		if (*i != '%')
 		{
 		count_bytes += _putchar(*i);
@@ -29,19 +29,19 @@ int _printf(const char *format, ...)
 		}
 	start = i;
 	i++;
-		while (get_flag(i, &para))
+		while (get_flag(i, &params))
 		{
 		i++;
 		}
-	i = get_width(i, &para, pointer);
-	i = get_precision(i, &para, pointer);
-		if (get_modifier(i, &para))
+	i = get_width(i, &params, pointer);
+	i = get_precision(i, &params, pointer);
+		if (get_modifier(i, &params))
 			i++;
 		if (!get_specifier(i))
 			count_bytes += print_from_to(start, i,
 			para.l_modifier || para.h_modifier ? i - 1 : 0);
 		else
-			count_bytes += get_print_func(i, pointer, &para);
+			count_bytes += get_print_func(i, pointer, &params);
 	}
 	_putchar(BUF_FLUSH);
 	va_end(pointer);

@@ -6,7 +6,7 @@
  *
  * Return: the number of bytes printed
  */
-int (*get_specifier(char *s))(va_list pointer, spec_para *params)
+int *get_specifier(char *s)(va_list pointer, spec_para *params)
 {
 	speci_t specifiers[] = {
 		{"c", print_char},
@@ -152,7 +152,7 @@ char *get_precision(char *p, spec_para *params, va_list pointer)
 	int i = 0;
 
 	if (*p != '.')
-	return (p);
+		return (p);
 	p++;
 
 	if (*p == '*')
@@ -163,12 +163,9 @@ char *get_precision(char *p, spec_para *params, va_list pointer)
 	else
 	{
 	while (_isdigit(*p))
-	{
-	i = i * 10 + (*p - '0');
-	p++;
-	}
-	}
 
+	i = i * 10 + (*p++ - '0');
+	}
 	(*params).precision = i;
 	return (p);
 }
