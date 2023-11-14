@@ -13,19 +13,13 @@ int print_char(va_list pointer, spec_para *params)
 	unsigned int padding = 1, count = 0, character = va_arg(pointer, int);
 
 	if ((*params).minus_flag)
-	{
 		count += _putchar(character);
-	}
 
-	for (; padding < (*params).width; padding++)
-	{
+	while (padding++ < (*params).width)
 		count += _putchar(ch);
-	}
 
 	if (!(*params).minus_flag)
-	{
 		count += _putchar(character);
-	}
 
 	return (count);
 }
@@ -63,10 +57,9 @@ int print_string(va_list pointer, spec_para *params)
 	unsigned int padding = 0, count = 0, a = 0, b;
 
 	(void)params;
-	if (!strng)
-	{
+	switch ((int)(!strng))
+	case 1:
 		strng = NULL_STRING;
-	}
 
 	b = padding = _strlen(strng);
 	if ((*params).precision < padding)

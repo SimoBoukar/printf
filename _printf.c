@@ -39,7 +39,7 @@ int _printf(const char *format, ...)
 			i++;
 		if (!get_specifier(i))
 			count_bytes += print_from_to(start, i,
-			para.l_modifier || para.h_modifier ? i - 1 : 0);
+			params.l_modifier || params.h_modifier ? i - 1 : 0);
 		else
 			count_bytes += get_print_func(i, pointer, &params);
 	}

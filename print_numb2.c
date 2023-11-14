@@ -28,10 +28,10 @@ char *convert(long int num, int base, int flags, spec_para *params)
 	ptr = &tab2[49];
 	*ptr = '\0';
 
-	do	{
-		*--ptr = tab[a % base];
-		a /= base;
-	} while (a != 0)
+	do {
+	*--ptr = tab[a % base];
+	a /= base;
+	} while (a != 0);
 
 	if (sign)
 		*--ptr = sign;

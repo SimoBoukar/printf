@@ -6,7 +6,7 @@
  *
  * Return: the number of bytes printed
  */
-int *get_specifier(char *s)(va_list pointer, spec_para *params)
+int (*get_specifier(char *s))(va_list pointer, spec_para *params)
 {
 	speci_t specifiers[] = {
 		{"c", print_char},
