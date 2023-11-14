@@ -63,11 +63,11 @@ int print_num(char *str, spec_para *params)
 
 	if (!(*params).minus_flag)
 	{
-		return (print_number_right_shift(str, params));
+		return (print_num_right_shift(str, params));
 	}
 	else
 	{
-		return (print_number_left_shift(str, params));
+		return (print_num_left_shift(str, params));
 	}
 }
 /**
@@ -77,7 +77,7 @@ int print_num(char *str, spec_para *params)
  *
  * Return: chars printed
  */
-int print_num_right_shift(char *str, params_t *params)
+int print_num_right_shift(char *str, spec_para *params)
 {
 	unsigned int x = 0, numb, numb2, y = _strlen(str);
 	char line_ch = ' ';
@@ -127,7 +127,7 @@ int print_num_right_shift(char *str, params_t *params)
  *
  * Return: chars printed
  */
-int print_num_left_shift(char *str, params_t *params)
+int print_num_left_shift(char *str, spec_para *params)
 {
 	unsigned int x = 0, numb, numb2, y = _strlen(str);
 	char line_char = ' ';
@@ -137,7 +137,7 @@ int print_num_left_shift(char *str, params_t *params)
 
 	numb = numb2 = (!params->unsign && *str == '-');
 
-	if (numb && x < params->width && pad_char == '0' && !params->minus_flag)
+	if (numb && x < params->width && line_char == '0' && !params->minus_flag)
 		str++;
 	else
 		numb = 0;

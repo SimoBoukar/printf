@@ -9,13 +9,14 @@
  *
  * Return: string
  */
-char *convert(long int num, int base, int flags, params_t *params)
+char *convert(long int num, int base, int flags, spec_para *params)
 {
 	static char *tab;
 	static char tab2[50];
 	char sign = 0;
 	char *ptr;
 	unsigned long x = num;
+	(void)params;
 
 	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
@@ -46,7 +47,7 @@ char *convert(long int num, int base, int flags, params_t *params)
  *
  * Return: bytes printed
  */
-int print_unsigned(va_list pointer, params_t *params)
+int print_unsigned(va_list pointer, spec_para *params)
 {
 	unsigned long exo;
 
@@ -58,7 +59,7 @@ int print_unsigned(va_list pointer, params_t *params)
 		exo = (unsigned int)va_arg(pointer, unsigned int);
 
 	(*params).unsign = 1;
-	return (print_num(convert(l, 10, CONVERT_UNSIGNED, params), params));
+	return (print_num(convert(exo, 10, CONVERT_UNSIGNED, params), params));
 }
 
 /**
@@ -68,7 +69,7 @@ int print_unsigned(va_list pointer, params_t *params)
  *
  * Return: bytes printed
  */
-int print_address(va_list pointer, params_t *params)
+int print_address(va_list pointer, spec_para *params)
 {
 	unsigned long int x = va_arg(pointer, unsigned long int);
 	char *s;
