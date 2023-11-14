@@ -52,7 +52,7 @@ typedef struct specifier
 {
 	char *specifier;
 	int (*f)(va_list, spec_para *);
-} spec_t;
+} speci_t;
 
 
 int _puts(char *str);

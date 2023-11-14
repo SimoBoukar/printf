@@ -8,7 +8,7 @@
  */
 int (*get_specifier(char *s))(va_list pointer, spec_para *params)
 {
-	spec_t spec[] = {
+	speci_t specifiers[] = {
 		{"c", print_char},
 		{"d", print_int},
 		{"i", print_int},
@@ -27,11 +27,11 @@ int (*get_specifier(char *s))(va_list pointer, spec_para *params)
 	};
 	int z = 0;
 
-	while (spec[z].spec)
+	while (specifiers[z].specifier)
 	{
-		if (*s == spec[z].spec[0])
+		if (*s == specifiers[z].specifier[0])
 		{
-			return (spec[z].f);
+			return (specifiers[z].f);
 		}
 		z++;
 	}
@@ -152,13 +152,13 @@ char *get_precision(char *p, spec_para *params, va_list pointer)
 	int i = 0;
 
 	if (*p != '.')
-		return (p);
-		p++;
+	return (p);
+	p++;
 
 	if (*p == '*')
 	{
-	i = va_arg(pointer, int);
-	p++;
+		i = va_arg(pointer, int);
+		p++;
 	}
 	else
 	{

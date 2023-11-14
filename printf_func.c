@@ -10,16 +10,16 @@
 int print_char(va_list pointer, spec_para *params)
 {
 	 char ch = ' ';
-	unsigned int pad = 1, count = 0, character = va_arg(pointer, int);
+	unsigned int padding = 1, count = 0, character = va_arg(pointer, int);
 
 	if ((*params).minus_flag)
 	{
 		count += _putchar(character);
 	}
 
-	for (; pad < (*params).width; pad++)
+	for (; padding < (*params).width; padding++)
 	{
-		count += _putchar(character);
+		count += _putchar(ch);
 	}
 
 	if (!(*params).minus_flag)
@@ -42,12 +42,12 @@ int print_int(va_list pointer, spec_para *params)
 	long count_int;
 
 	if ((*params).l_modifier)
-		count_int = va_arg(ap, long);
+		count_int = va_arg(pointer, long);
 	else if ((*params).h_modifier)
 		count_int = (short int)va_arg(pointer, int);
 	else
-		count_int = (int)va_arg(ap, int);
-	return (print_number(convert(count_int, 10, 0, params), params));
+		count_int = (int)va_arg(pointer, int);
+	return (print_num(convert(count_int, 10, 0, params), params));
 }
 
 /**
@@ -59,8 +59,8 @@ int print_int(va_list pointer, spec_para *params)
  */
 int print_string(va_list pointer, spec_para *params)
 {
-	char *strng = va_arg(pointer, char *), pad_char = ' ';
-	unsigned int pad = 0, count = 0, a = 0, b;
+	char *strng = va_arg(pointer, char *), padding_char = ' ';
+	unsigned int padding = 0, count = 0, a = 0, b;
 
 	(void)params;
 	if (!strng)
@@ -68,24 +68,24 @@ int print_string(va_list pointer, spec_para *params)
 		strng = NULL_STRING;
 	}
 
-	b = pad = _strlen(strng);
-	if ((*params).precision < pad)
-		b = pad = (*params).precision;
+	b = padding = _strlen(strng);
+	if ((*params).precision < padding)
+		b = padding = (*params).precision;
 
 	if ((*params).minus_flag)
 	{
 		if ((*params).precision != UINT_MAX)
-			for (a = 0; a < pad; a++)
+			for (a = 0; a < padding; a++)
 				count += _putchar(*strng++);
 		else
 			count += _puts(strng);
 	}
 	while (b++ < (*params).width)
-		count += _putchar(pad_char);
+		count += _putchar(padding_char);
 	if (!(*params).minus_flag)
 	{
 		if ((*params).precision != UINT_MAX)
-			for (a = 0; a < pad; a++)
+			for (a = 0; a < padding; a++)
 				count += _putchar(*strng++);
 		else
 			count += _puts(strng);

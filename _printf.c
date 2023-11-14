@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 		if (get_modifier(i, &para))
 			i++;
 		if (!get_specifier(i))
-			sum += print_from_to(start, i,
+			count_bytes += print_from_to(start, i,
 			para.l_modifier || para.h_modifier ? i - 1 : 0);
 		else
 			count_bytes += get_print_func(i, pointer, &para);
