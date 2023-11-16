@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * get_specifier - finds the format func
+ * get_specifier - finds the format function
  * @s: the format string
  *
  * Return: the number of bytes printed
  */
-int (*get_specifier(char *s))(va_list pointer, spec_para *params)
+int (*get_specifier(char *s))(va_list pointer, spec_para * params)
 {
 	speci_t specifiers[] = {
 		{"c", print_char},
@@ -25,15 +25,16 @@ int (*get_specifier(char *s))(va_list pointer, spec_para *params)
 		{"R", print_rot13},
 		{NULL, NULL}
 	};
-	int z = 0;
 
-	while (specifiers[z].specifier)
+	int i = 0;
+
+	while (specifiers[i].specifier)
 	{
-		if (*s == specifiers[z].specifier[0])
+		if (*s == *(specifiers[i].specifier))
 		{
-			return (specifiers[z].f);
+			return (specifiers[i].f);
 		}
-		z++;
+		i++;
 	}
 	return (NULL);
 }
